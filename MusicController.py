@@ -138,3 +138,19 @@ def draw_progress_bar(surface):
     pygame.draw.circle(surface, COL3, (10 + int((WIDTH-20) * progress), 92), 6)
 
 
+def update_gui():
+    # Set background color of the screen
+    screen.fill(BACKGROUND)
+
+    # Write song title and singer
+    song_text = font1.render(current_song, True, COL2)
+    singer_text = font2.render(current_singer, True, COL1)
+    screen.blit(song_text, (WIDTH / 2 - len(current_song) * 8, HEIGHT - 130))
+    screen.blit(singer_text, (WIDTH / 2 - len(current_singer) * 5, HEIGHT - 100))
+
+    # Draw progress bar
+    draw_progress_bar(screen)
+
+    pygame.display.flip()
+
+
