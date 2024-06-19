@@ -158,3 +158,13 @@ def update_gui():
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
 
+# Run the voice command handler in a separate thread
+voice_thread = threading.Thread(target=handle_voice_command, args=(recognizer, microphone))
+voice_thread.start()
+
+# Main loop for the GUI
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
