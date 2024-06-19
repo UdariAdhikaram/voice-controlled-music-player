@@ -168,3 +168,5 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    update_gui()
+
