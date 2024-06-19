@@ -170,3 +170,4 @@ while running:
 
     update_gui()
 
+pygame.quit()
