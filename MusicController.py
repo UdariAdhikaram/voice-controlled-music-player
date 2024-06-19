@@ -4,3 +4,6 @@ import threading
 import time
 import os
 
+# Initialize the mixer module in pygame
+pygame.mixer.init()
+
