@@ -94,3 +94,30 @@ def recognize_voice_command(recognizer, microphone):
             return None
 
 
+def handle_voice_command(recognizer, microphone):
+    global running
+    while running:
+        try:
+            command = recognize_voice_command(recognizer, microphone)
+            if command:
+                if "play" in command:
+                    song_path = get_song()
+                    if song_path:
+                        play_music(song_path)
+                elif "pause" in command:
+                    pause_music()
+                elif "resume" in command:
+                    resume_music()
+                elif "stop" in command:
+                    stop_music()
+                elif "exit" in command:
+                    stop_music()
+                    print("Exiting...")
+                    running = False
+                    break
+        except sr.WaitTimeoutError:
+            print("Listening timed out while waiting for phrase to start")
+        except sr.RequestError as e:
+            print(f"Could not request results; {e}")
+
+
