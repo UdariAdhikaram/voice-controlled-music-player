@@ -81,3 +81,16 @@ def get_song():
         return None
 
 
+def recognize_voice_command(recognizer, microphone):
+    with microphone as source:
+        print("Listening for command...")
+        audio = recognizer.listen(source, timeout=3, phrase_time_limit=2)
+        try:
+            command = recognizer.recognize_google(audio)
+            print("You said : " + command)
+            return command.lower()
+        except sr.UnknownValueError:
+            print("Sorry, I did not understand the audio")
+            return None
+
+
