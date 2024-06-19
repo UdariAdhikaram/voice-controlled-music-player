@@ -61,3 +61,14 @@ def resume_music():
     print("Music resumed")
 
 
+def stop_music():
+    global current_song, current_singer, current_status, start_time, song_length
+    pygame.mixer.music.stop()
+    current_song = "No music playing"
+    current_singer = ""
+    current_status = ""
+    start_time = 0
+    song_length = 0
+    print("Music stopped")
+
+
