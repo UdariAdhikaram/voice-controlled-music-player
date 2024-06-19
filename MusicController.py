@@ -31,3 +31,11 @@ previous_progress = 0
 running = True
 
 
+def play_music(file):
+    global current_song, current_singer, current_status, start_time, song_length
+    pygame.mixer.music.load(file)
+    pygame.mixer.music.play()
+    start_time = time.time()
+    song_length = pygame.mixer.Sound(file).get_length()
+
+    # Extract song and singer from filename
