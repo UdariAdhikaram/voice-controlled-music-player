@@ -39,3 +39,10 @@ def play_music(file):
     song_length = pygame.mixer.Sound(file).get_length()
 
     # Extract song and singer from filename
+    file_name = os.path.basename(file).replace('.mp3', '')
+    current_song, current_singer = file_name.split(' - ')
+
+    current_status = "Playing"
+    print("Playing music...")
+
+
