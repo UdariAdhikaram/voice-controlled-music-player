@@ -72,3 +72,12 @@ def stop_music():
     print("Music stopped")
 
 
+def get_song():
+    music_folder = "Music"
+    songs = [f for f in os.listdir(music_folder) if f.endswith('.mp3')]
+    if songs:
+        return os.path.join(music_folder, songs[0])
+    else:
+        return None
+
+
