@@ -121,3 +121,20 @@ def handle_voice_command(recognizer, microphone):
             print(f"Could not request results; {e}")
 
 
+def draw_progress_bar(surface):
+    global current_status, start_time, song_length, previous_progress
+
+    if current_status == "Playing":
+        elapsed_time = time.time() - start_time
+        progress = min(elapsed_time / song_length, 1.0) if song_length > 0 else 0
+        previous_progress = progress
+    elif current_status != "Paused":
+        progress = 0
+    else:
+        progress = previous_progress
+
+    pygame.draw.rect(surface, COL1, [10, 90, WIDTH-20, 4], 10)  # Border
+    pygame.draw.rect(surface, COL3, [10, 90, (WIDTH-20) * progress, 6], 10)  # Progress bar
+    pygame.draw.circle(surface, COL3, (10 + int((WIDTH-20) * progress), 92), 6)
+
+
