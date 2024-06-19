@@ -53,3 +53,11 @@ def pause_music():
     print("Music paused")
 
 
+def resume_music():
+    global current_status, start_time
+    pygame.mixer.music.unpause()
+    current_status = "Playing"
+    start_time = time.time() - (pygame.mixer.music.get_pos() / 1000)
+    print("Music resumed")
+
+
