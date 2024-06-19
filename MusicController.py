@@ -154,3 +154,7 @@ def update_gui():
     pygame.display.flip()
 
 
+# Initialize speech recognizer and microphone
+recognizer = sr.Recognizer()
+microphone = sr.Microphone()
+
