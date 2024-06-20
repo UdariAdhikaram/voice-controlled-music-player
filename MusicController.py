@@ -114,6 +114,12 @@ def volume_up():
     volume_display_start = time.time()
     print(f"Volume increased to {current_volume * 100:.0f}%")
 
+def volume_down():
+    global current_volume, volume_display_start
+    current_volume = max(current_volume - 0.1, 0.0)  # Decrease volume by 10%
+    pygame.mixer.music.set_volume(current_volume)
+    volume_display_start = time.time()
+    print(f"Volume decreased to {current_volume * 100:.0f}%")
 
 def recognize_voice_command(recognizer, microphone):
     with microphone as source:
