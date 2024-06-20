@@ -147,6 +147,8 @@ def handle_voice_command(recognizer, microphone):
                     resume_music()
                 elif "stop" in command:
                     stop_music()
+                elif "next" in command:
+                    next_song()
                 elif "exit" in command:
                     stop_music()
                     print("Exiting...")
