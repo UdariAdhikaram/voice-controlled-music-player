@@ -106,6 +106,10 @@ def next_song():
         print("No next song available")
 
 
+def previous_song():
+    global current_song_index
+    if current_song_index > 0:
+        play_music(current_song_index - 1)
     else:
         return None
 
