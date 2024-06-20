@@ -34,6 +34,20 @@ running = True
 songs = []
 current_song_index = -1
 
+
+def load_songs():
+    global songs
+    music_folder = "Music"
+    songs = [os.path.join(music_folder, f) for f in os.listdir(music_folder) if f.endswith('.mp3')]
+
+
+def play_music(index):
+    global current_song, current_singer, current_status, start_time, song_length, current_song_index
+    if index < 0 or index >= len(songs):
+        print("Invalid song index")
+        return
+
+    file = songs[index]
     pygame.mixer.music.load(file)
     pygame.mixer.music.play()
     start_time = time.time()
