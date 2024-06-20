@@ -163,7 +163,7 @@ def handle_voice_command(recognizer, microphone):
 
 
 def draw_progress_bar(surface):
-    global current_status, start_time, song_length, previous_progress
+    global current_status, start_time, song_length, previous_progress, progress
 
     if current_status == "Playing":
         elapsed_time = time.time() - start_time
