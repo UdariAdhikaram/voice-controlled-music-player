@@ -199,6 +199,9 @@ def update_gui():
     pygame.display.flip()
 
 
+# Load the songs
+load_songs()
+
 # Initialize speech recognizer and microphone
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
