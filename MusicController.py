@@ -112,6 +112,7 @@ def previous_song():
         play_music(current_song_index - 1)
     else:
         return None
+        print("No previous song available")
 
 
 def recognize_voice_command(recognizer, microphone):
