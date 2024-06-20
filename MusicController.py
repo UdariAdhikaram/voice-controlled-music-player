@@ -55,7 +55,6 @@ def play_music(index):
 
     # Extract song and singer from filename
     file_name = os.path.basename(file).replace('.mp3', '')
-    current_song, current_singer = file_name.split(' - ')
     if '-' in file_name:
         current_song, current_singer = file_name.split('-', 1)
     else:
@@ -93,11 +92,6 @@ def stop_music():
     print("Music stopped.")
 
 
-def get_song():
-    music_folder = "Music"
-    songs = [f for f in os.listdir(music_folder) if f.endswith('.mp3')]
-    if songs:
-        return os.path.join(music_folder, songs[0])
 def next_song():
     global current_song_index
     if current_song_index < len(songs) - 1:
@@ -111,7 +105,6 @@ def previous_song():
     if current_song_index > 0:
         play_music(current_song_index - 1)
     else:
-        return None
         print("No previous song available")
 
 
@@ -135,11 +128,6 @@ def handle_voice_command(recognizer, microphone):
             command = recognize_voice_command(recognizer, microphone)
             if command:
                 if "play" in command:
-                    song_path = get_song()
-                    if song_path:
-                        play_music(song_path)
-                elif "pause" in command:
-                    pause_music()
                     if songs:
                         play_music(0)
                 elif "halt" in command:
