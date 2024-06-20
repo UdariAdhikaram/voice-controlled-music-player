@@ -63,6 +63,7 @@ def play_music(index):
         current_singer = "Unknown"
 
     current_status = "Playing"
+    current_song_index = index
     print("Playing music...")
 
 
