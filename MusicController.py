@@ -30,6 +30,9 @@ song_length = 0
 previous_progress = 0
 running = True
 
+# List to store songs and current song index
+songs = []
+current_song_index = -1
 
 def play_music(file):
     global current_song, current_singer, current_status, start_time, song_length
