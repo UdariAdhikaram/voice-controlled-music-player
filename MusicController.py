@@ -15,6 +15,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Voice controlled music player")
 font1 = pygame.font.Font(None, 45)
 font2 = pygame.font.Font(None, 30)
+font3 = pygame.font.Font(None, 25)
 
 BACKGROUND = "#000000"  # Black
 COL1 = "#4D4D4D"  # Gray
@@ -34,12 +35,15 @@ running = True
 songs = []
 current_song_index = -1
 
+# Initialize volume
+current_volume = 0.5  # Default volume level (50%)
+volume_display_time = 2  # Time to display volume level in seconds
+volume_display_start = 0
 
 def load_songs():
     global songs
     music_folder = "Music"
     songs = [os.path.join(music_folder, f) for f in os.listdir(music_folder) if f.endswith('.mp3')]
-
 
 def play_music(index):
     global current_song, current_singer, current_status, start_time, song_length, current_song_index
@@ -50,6 +54,7 @@ def play_music(index):
     file = songs[index]
     pygame.mixer.music.load(file)
     pygame.mixer.music.play()
+    pygame.mixer.music.set_volume(current_volume)  # Set initial volume
     start_time = time.time()
     song_length = pygame.mixer.Sound(file).get_length()
 
@@ -65,13 +70,11 @@ def play_music(index):
     current_song_index = index
     print("Playing music...")
 
-
 def halt_music():
     global current_status
     pygame.mixer.music.pause()
     current_status = "Halt"
     print("Music paused.")
-
 
 def resume_music():
     global current_status, start_time
@@ -79,7 +82,6 @@ def resume_music():
     current_status = "Playing"
     start_time = time.time() - (pygame.mixer.music.get_pos() / 1000)
     print("Music resumed.")
-
 
 def stop_music():
     global current_song, current_singer, current_status, start_time, song_length
@@ -91,14 +93,12 @@ def stop_music():
     song_length = 0
     print("Music stopped.")
 
-
 def next_song():
     global current_song_index
     if current_song_index < len(songs) - 1:
         play_music(current_song_index + 1)
     else:
         print("No next song available")
-
 
 def previous_song():
     global current_song_index
@@ -133,7 +133,6 @@ def recognize_voice_command(recognizer, microphone):
             print("Sorry, I did not understand the audio")
             return None
 
-
 def handle_voice_command(recognizer, microphone):
     global running
     while running:
@@ -167,7 +166,6 @@ def handle_voice_command(recognizer, microphone):
         except sr.RequestError as e:
             print(f"Could not request results; {e}")
 
-
 def draw_progress_bar(surface):
     global current_status, start_time, song_length, previous_progress, progress
 
@@ -183,7 +181,6 @@ def draw_progress_bar(surface):
     pygame.draw.rect(surface, COL1, [10, 90, WIDTH - 20, 4], 10)  # Border
     pygame.draw.rect(surface, COL3, [10, 90, (WIDTH - 20) * progress, 6], 10)  # Progress bar
     pygame.draw.circle(surface, COL3, (10 + (WIDTH - 20) * progress, 92), 6)
-
 
 def update_gui():
     # Set background color of the screen
@@ -202,8 +199,12 @@ def update_gui():
     status_time = font1.render(current_status_symbol, True, COL2)
     screen.blit(status_time, (WIDTH / 2 - 7, HEIGHT - 40))
 
-    pygame.display.flip()
+    # Display volume level if recently changed
+    if time.time() - volume_display_start < volume_display_time:
+        volume_text = font3.render(f"Volume: {int(current_volume * 100)}%", True, COL2)
+        screen.blit(volume_text, (10, 10))
 
+    pygame.display.flip()
 
 # Load the songs
 load_songs()
