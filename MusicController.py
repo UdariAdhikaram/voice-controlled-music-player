@@ -192,6 +192,10 @@ def update_gui():
     # Draw progress bar
     draw_progress_bar(screen)
 
+    current_status_symbol = ">" if current_status != "Playing" else "||"
+    status_time = font1.render(current_status_symbol, True, COL2)
+    screen.blit(status_time, (WIDTH / 2 - 7, HEIGHT - 40))
+
     pygame.display.flip()
 
 
