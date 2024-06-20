@@ -98,6 +98,14 @@ def get_song():
     songs = [f for f in os.listdir(music_folder) if f.endswith('.mp3')]
     if songs:
         return os.path.join(music_folder, songs[0])
+def next_song():
+    global current_song_index
+    if current_song_index < len(songs) - 1:
+        play_music(current_song_index + 1)
+    else:
+        print("No next song available")
+
+
     else:
         return None
 
