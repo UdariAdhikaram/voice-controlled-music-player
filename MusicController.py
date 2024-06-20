@@ -79,7 +79,7 @@ def resume_music():
     pygame.mixer.music.unpause()
     current_status = "Playing"
     start_time = time.time() - (pygame.mixer.music.get_pos() / 1000)
-    print("Music resumed")
+    print("Music resumed.")
 
 
 def stop_music():
@@ -90,7 +90,7 @@ def stop_music():
     current_status = ""
     start_time = 0
     song_length = 0
-    print("Music stopped")
+    print("Music stopped.")
 
 
 def get_song():
