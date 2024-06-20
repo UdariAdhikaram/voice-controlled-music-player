@@ -169,7 +169,7 @@ def draw_progress_bar(surface):
         elapsed_time = time.time() - start_time
         progress = min(elapsed_time / song_length, 1.0) if song_length > 0 else 0
         previous_progress = progress
-    elif current_status != "Paused":
+    elif current_status != "Halt":
         progress = 0
     else:
         progress = previous_progress
