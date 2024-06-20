@@ -67,11 +67,11 @@ def play_music(index):
     print("Playing music...")
 
 
-def pause_music():
+def halt_music():
     global current_status
     pygame.mixer.music.pause()
-    current_status = "Paused"
-    print("Music paused")
+    current_status = "Halt"
+    print("Music paused.")
 
 
 def resume_music():
