@@ -56,6 +56,11 @@ def play_music(index):
     # Extract song and singer from filename
     file_name = os.path.basename(file).replace('.mp3', '')
     current_song, current_singer = file_name.split(' - ')
+    if '-' in file_name:
+        current_song, current_singer = file_name.split('-', 1)
+    else:
+        current_song = file_name
+        current_singer = "Unknown"
 
     current_status = "Playing"
     print("Playing music...")
