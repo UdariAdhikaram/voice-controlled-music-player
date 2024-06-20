@@ -174,9 +174,9 @@ def draw_progress_bar(surface):
     else:
         progress = previous_progress
 
-    pygame.draw.rect(surface, COL1, [10, 90, WIDTH-20, 4], 10)  # Border
-    pygame.draw.rect(surface, COL3, [10, 90, (WIDTH-20) * progress, 6], 10)  # Progress bar
-    pygame.draw.circle(surface, COL3, (10 + int((WIDTH-20) * progress), 92), 6)
+    pygame.draw.rect(surface, COL1, [10, 90, WIDTH - 20, 4], 10)  # Border
+    pygame.draw.rect(surface, COL3, [10, 90, (WIDTH - 20) * progress, 6], 10)  # Progress bar
+    pygame.draw.circle(surface, COL3, (10 + (WIDTH - 20) * progress, 92), 6)
 
 
 def update_gui():
