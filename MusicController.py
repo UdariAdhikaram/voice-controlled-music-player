@@ -142,7 +142,7 @@ def handle_voice_command(recognizer, microphone):
                 if "play" in command:
                     if songs:
                         play_music(0)
-                elif "halt" in command:
+                elif "pause" in command:
                     halt_music()
                 elif "resume" in command:
                     resume_music()
